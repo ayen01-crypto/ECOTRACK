@@ -1,0 +1,802 @@
+
+    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTrack - Track Your Carbon Footprint</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+   
+    </style>
+</head>
+<body> <!-- Header & Navigation -->
+    
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>EcoTrack</span>
+                </div>
+                
+                <ul class="nav-links">
+                    <li><a href="#" onclick="showSection('home')">Home</a></li>
+                    <li><a href="#" onclick="showSection('about')">About Us</a></li>
+                    <li><a href="#" onclick="showSection('calculator')">Calculator</a></li>
+                    <li><a href="#" onclick="showSection('dashboard')">Dashboard</a></li>
+                    <li><a href="#" onclick="showSection('achievements')">Achievements</a></li>
+                </ul>
+                
+                <div class="auth-buttons">
+                    <button class="btn btn-outline" onclick="showSection('login')">Login</button>
+                    <button class="btn btn-primary" onclick="showSection('register')">Register</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Track Your Carbon Footprint</h1>
+            <p>Join the fight against climate change by monitoring and reducing your environmental impact with our easy-to-use tools</p>
+            <button class="btn btn-primary" onclick="showSection('register')">Get Started</button>
+        </div>
+    </section>
+
+    <!-- Main Content Sections -->
+    <main class="container">
+        <!-- Home Section -->
+        <section id="home" class="page-section active-section">
+            <h2 class="form-title">How EcoTrack Helps You</h2>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>Activity Logging</h3>
+                    <p>Track your daily activities and their environmental impact</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-calculator"></i>
+                    <h3>Carbon Calculator</h3>
+                    <p>Calculate your carbon footprint with our advanced tools</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Visualizations</h3>
+                    <p>See your progress with beautiful charts and graphs</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Achievements</h3>
+                    <p>Earn badges for your eco-friendly accomplishments</p>
+                </div>
+            </div>
+            
+            <div class="form-container">
+                <h2 class="form-title">Quick Activity Log</h2>
+                <form id="quick-activity-form">
+                    <div class="form-group">
+                        <label for="activity-type">Activity Type</label>
+                        <select class="form-control" id="activity-type">
+                            <option value="">Select an activity</option>
+                            <option value="transport">Transportation</option>
+                            <option value="energy">Energy Usage</option>
+                            <option value="food">Food Consumption</option>
+                            <option value="waste">Waste Production</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="activity-value">Value</label>
+                        <input type="number" class="form-control" id="activity-value" placeholder="e.g., 100">
+                    </div>
+                    <div class="form-group">
+                        <label for="activity-unit">Unit</label>
+                        <select class="form-control" id="activity-unit">
+                            <option value="miles">Miles</option>
+                            <option value="kwh">kWh</option>
+                            <option value="meals">Meals</option>
+                            <option value="kg">Kilograms</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-primary" style="width: 100%;">Log Activity</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Login Section -->
+        <section id="login" class="page-section">
+            <div class="form-container">
+                <h2 class="form-title">Login to Your Account</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-email">Email Address</label>
+                        <input type="email" class="form-control" id="login-email" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" class="form-control" id="login-password" placeholder="Enter your password">
+                    </div>
+                    <button type="button" class="btn btn-primary" style="width: 100%;" onclick="handleLogin()">Login</button>
+                </form>
+                <p style="text-align: center; margin-top: 20px;">
+                    Don't have an account? <a href="#" onclick="showSection('register')" style="color: var(--primary);">Register here</a>
+                </p>
+            </div>
+        </section>
+
+        <!-- Register Section -->
+        <section id="register" class="page-section">
+            <div class="form-container">
+                <h2 class="form-title">Create an Account</h2>
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="register-name">Full Name</label>
+                        <input type="text" class="form-control" id="register-name" placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Email Address</label>
+                        <input type="email" class="form-control" id="register-email" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Password</label>
+                        <input type="password" class="form-control" id="register-password" placeholder="Create a password">
+                    </div>
+                    <div class="form-group">
+                        <label for="register-confirm">Confirm Password</label>
+                        <input type="password" class="form-control" id="register-confirm" placeholder="Confirm your password">
+                    </div>
+                    <button type="button" class="btn btn-primary" style="width: 100%;" onclick="handleRegister()">Register</button>
+                </form>
+                <p style="text-align: center; margin-top: 20px;">
+                    Already have an account? <a href="#" onclick="showSection('login')" style="color: var(--primary);">Login here</a>
+                </p>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="page-section">
+            <h2 class="form-title">Your Dashboard</h2>
+            
+            <div class="stats-container">
+                <div class="stat-card">
+                    <i class="fas fa-footprint"></i>
+                    <h3>4.2t</h3>
+                    <p>Carbon Footprint</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-tree"></i>
+                    <h3>18</h3>
+                    <p>Trees Needed to Offset</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-recycle"></i>
+                    <h3>72%</h3>
+                    <p>Better Than Average</p>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h3>Monthly Carbon Footprint (kg CO2)</h3>
+                <canvas id="footprintChart"></canvas>
+            </div>
+            
+            <div class="chart-container">
+                <h3>Footprint by Category</h3>
+                <canvas id="categoryChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Calculator Section -->
+        <section id="calculator" class="page-section">
+            <div class="calculator-container">
+                <h2 class="form-title">Carbon Footprint Calculator</h2>
+                
+                <div class="calc-step">
+                    <h3><i class="fas fa-car"></i> Transportation</h3>
+                    <div class="form-group">
+                        <label for="transport-type">How do you typically commute?</label>
+                        <select class="form-control" id="transport-type">
+                            <option value="">Select transportation type</option>
+                            <option value="petrol">Car (petrol)</option>
+                            <option value="diesel">Car (diesel)</option>
+                            <option value="hybrid">Car (hybrid)</option>
+                            <option value="electric">Car (electric)</option>
+                            <option value="public">Public transportation</option>
+                            <option value="bicycle">Bicycle</option>
+                            <option value="walk">Walk</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="commute-distance">Daily commute distance (miles)</label>
+                        <input type="number" class="form-control" id="commute-distance" placeholder="Enter distance" value="15">
+                    </div>
+                    <div class="form-group">
+                        <label for="commute-days">Days per week you commute</label>
+                        <input type="number" class="form-control" id="commute-days" placeholder="Enter days" value="5" min="1" max="7">
+                    </div>
+                </div>
+                
+                <div class="calc-step">
+                    <h3><i class="fas fa-bolt"></i> Home Energy</h3>
+                    <div class="form-group">
+                        <label for="electricity-usage">Monthly electricity usage (kWh)</label>
+                        <input type="number" class="form-control" id="electricity-usage" placeholder="Enter kWh" value="200">
+                    </div>
+                    <div class="form-group">
+                        <label for="heating-type">Home heating type</label>
+                        <select class="form-control" id="heating-type">
+                            <option value="natural-gas">Natural Gas</option>
+                            <option value="electric">Electric</option>
+                            <option value="oil">Heating Oil</option>
+                            <option value="propane">Propane</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="heating-usage">Monthly heating usage (therms or kWh)</label>
+                        <input type="number" class="form-control" id="heating-usage" placeholder="Enter usage" value="80">
+                    </div>
+                </div>
+                
+                <div class="calc-step">
+                    <h3><i class="fas fa-utensils"></i> Diet</h3>
+                    <div class="form-group">
+                        <label for="diet-type">Which best describes your diet?</label>
+                        <select class="form-control" id="diet-type">
+                            <option value="meat-daily">Meat lover (daily)</option>
+                            <option value="meat-regular" selected>Average (meat 3-5 times weekly)</option>
+                            <option value="vegetarian">Vegetarian</option>
+                            <option value="vegan">Vegan</option>
+                            <option value="pescatarian">Pescatarian</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" style="width: 100%;" onclick="calculateFootprint()">Calculate My Footprint</button>
+                
+                <div id="results-container" class="results-container">
+                    <h2>Your Carbon Footprint Results</h2>
+                    <div class="carbon-result" id="carbon-total">3.8 tons CO2/year</div>
+                    
+                    <p>Your carbon footprint is <span id="comparison-text">slightly below</span> the national average of 4.6 tons per person annually.</p>
+                    
+                    <div class="comparison">
+                        <div class="comparison-item">
+                            <i class="fas fa-car"></i>
+                            <h4 id="transport-score">1.2 tons</h4>
+                            <p>Transportation</p>
+                        </div>
+                        <div class="comparison-item">
+                            <i class="fas fa-home"></i>
+                            <h4 id="home-score">1.5 tons</h4>
+                            <p>Home Energy</p>
+                        </div>
+                        <div class="comparison-item">
+                            <i class="fas fa-utensils"></i>
+                            <h4 id="diet-score">1.1 tons</h4>
+                            <p>Food</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Tips to Reduce Your Footprint</h3>
+                    <ul id="tips-list" style="text-align: left; margin: 20px 0; padding-left: 20px;">
+                        <li>Consider using public transportation or carpooling once a week</li>
+                        <li>Switch to LED bulbs and energy-efficient appliances</li>
+                        <li>Reduce meat consumption and choose local produce</li>
+                    </ul>
+                    
+                    <button class="btn btn-outline" onclick="showSection('dashboard')">View Full Dashboard</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements" class="page-section">
+            <h2 class="form-title">Your Achievements</h2>
+            
+            <div class="badges-container">
+                <div class="badge">
+                    <i class="fas fa-bicycle"></i>
+                    <h4>Green Commuter</h4>
+                    <p>Cycle or walk for 30 days</p>
+                    <small>Unlocked: Jan 15, 2023</small>
+                </div>
+                
+                <div class="badge">
+                    <i class="fas fa-recycle"></i>
+                    <h4>Recycling Champion</h4>
+                    <p>Recycle 100 items</p>
+                    <small>Unlocked:    Aug 26, 2025</small>
+                </div>
+                
+                <div class="badge">
+                    <i class="fas fa-plug"></i>
+                    <h4>Energy Saver</h4>
+                    <p>Reduce energy use by 20%</p>
+                    <small>Unlocked: Aug 23, 2025</small>
+                </div>
+                
+                <div class="badge locked">
+                    <i class="fas fa-leaf"></i>
+                    <h4>Carbon Neutral</h4>
+                    <p>Offset your carbon footprint</p>
+                    <small>Locked</small>
+                </div>
+                
+                <div class="badge locked">
+                    <i class="fas fa-shopping-bag"></i>
+                    <h4>Sustainable Shopper</h4>
+                    <p>30 eco-friendly purchases</p>
+                    <small>Locked</small>
+                </div>
+                
+                <div class="badge">
+                    <i class="fas fa-tint"></i>
+                    <h4>Water Guardian</h4>
+                    <p>Reduce water usage by 15%</p>
+                    <small>Unlocked: Aug 30, 2025</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="page-section">
+            <h2 class="form-title">About EcoTrack</h2>
+            
+            <div class="about-section">
+                <h3>Our Mission</h3>
+                <p>EcoTrack was founded  on 15th.Aug.2025 with a simple mission: to make carbon tracking accessible and actionable for everyone. We believe that by providing clear insights into personal environmental impact, we can empower individuals to make meaningful changes that collectively make a significant difference.</p>
+            </div>
+            
+            <div class="about-section">
+                <h3>What We Do</h3>
+                <p>Our platform helps you understand, track, and reduce your carbon footprint through easy-to-use tools, detailed analytics, and personalized recommendations. We translate complex environmental data into actionable insights that help you live more sustainably.</p>
+            </div>
+            
+            <h3 style="margin-top: 40px;">Our Team</h3>
+            <div class="team-container">
+                <div class="team-member">
+                    <img src="./img.jpg.png" alt="Team member">
+                    <h4>ARYATUHA KENNETH ADONIS</h4>
+                    <p>Lead Developer</p>
+                </div>
+                 <div class="team-member">
+                   <img src="./imgg.jpg.png" alt="Team-member">
+                    <h4>AYEN GEOFFREY ALEXANDER</h4>
+                    <p>Co-Developer</p>
+                </div>
+                
+                <div class="team-member">
+                   <img src="./image.jpg.png" alt="Team-member">
+                    <h4>AIJUKIRE GILBERT G-TECH</h4>
+                    <p>Sustainability Expert</p>
+                </div>
+                
+                <div class="team-member">
+                    <img src="./Imagg.jpg.jpg" alt="Team member">
+                    <h4>KULABAKO ARNOLD ODONGO</h4>
+                    <p>Data Analytist</p>
+                </div>
+                <div class="team-member">
+                    <img src="../patience1.jpg" alt="Team member">
+                    <h4>TURYAHABWE PATIENCE</h4>
+                    <p>Data Analytist</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>EcoTrack</h3>
+                    <p>Helping you reduce your environmental impact one step at a time.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" onclick="showSection('home')">Home</a></li>
+                        <li><a href="#" onclick="showSection('about')">About Us</a></li>
+                        <li><a href="#" onclick="showSection('calculator')">Calculator</a></li>
+                        <li><a href="#" onclick="showSection('dashboard')">Dashboard</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Kabale University, Kikungiri Hill</li>
+                        <li><i class="fas fa-phone"></i>+256749537430/+256394785202/+256785488123</li>
+                        <li><i class="fas fa-envelope"></i> kennetharyatuha@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 EcoTrack. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Show/hide sections
+        function showSection(sectionId) {
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active-section');
+            });
+            
+            document.getElementById(sectionId).classList.add('active-section');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Simulate login
+        function simulateLogin() {
+            alert('Login functionality would connect to a backend in a real application. Showing dashboard instead.');
+            showSection('dashboard');
+            renderCharts();
+        }
+        
+        // Simulate registration
+        function simulateRegister() {
+            alert('Registration functionality would connect to a backend in a real application. Showing dashboard instead.');
+            showSection('dashboard');
+            renderCharts();
+        }
+        
+        // Calculate carbon footprint
+        function calculateFootprint() {
+            // Get values from form
+            const transportType = document.getElementById('transport-type').value;
+            const commuteDistance = parseFloat(document.getElementById('commute-distance').value) || 0;
+            const commuteDays = parseInt(document.getElementById('commute-days').value) || 0;
+            const electricityUsage = parseFloat(document.getElementById('electricity-usage').value) || 0;
+            const heatingType = document.getElementById('heating-type').value;
+            const heatingUsage = parseFloat(document.getElementById('heating-usage').value) || 0;
+            const dietType = document.getElementById('diet-type').value;
+            
+            // Calculate transportation emissions
+            let transportEmissions = 0;
+            if (transportType && commuteDistance > 0 && commuteDays > 0) {
+                const transportFactors = {
+                    'petrol': 0.4,
+                    'diesel': 0.36,
+                    'hybrid': 0.22,
+                    'electric': 0.12,
+                    'public': 0.15,
+                    'bicycle': 0.05,
+                    'walk': 0
+                };
+                
+                const factor = transportFactors[transportType] || 0.3;
+                transportEmissions = commuteDistance * commuteDays * 52 * factor / 1000; // Convert to tons
+            }
+            
+            // Calculate home energy emissions
+            let electricityEmissions = electricityUsage * 0.5 / 1000; // Convert to tons
+            let heatingEmissions = 0;
+            
+            const heatingFactors = {
+                'natural-gas': 5.3,
+                'electric': 0.5,
+                'oil': 7.3,
+                'propane': 5.0
+            };
+            
+            heatingEmissions = heatingUsage * (heatingFactors[heatingType] || 5.0) / 1000; // Convert to tons
+            const homeEmissions = electricityEmissions + heatingEmissions;
+            
+            // Calculate diet emissions
+            const dietFactors = {
+                'meat-daily': 2.5,
+                'meat-regular': 1.8,
+                'vegetarian': 1.2,
+                'vegan': 0.9,
+                'pescatarian': 1.5
+            };
+            
+            const dietEmissions = dietFactors[dietType] || 1.8;
+            
+            // Calculate total
+            const totalEmissions = transportEmissions + homeEmissions + dietEmissions;
+            
+            // Display results
+            document.getElementById('carbon-total').textContent = totalEmissions.toFixed(1) + ' tons CO2/year';
+            document.getElementById('transport-score').textContent = transportEmissions.toFixed(1) + ' tons';
+            document.getElementById('home-score').textContent = homeEmissions.toFixed(1) + ' tons';
+            document.getElementById('diet-score').textContent = dietEmissions.toFixed(1) + ' tons';
+            
+            // Set comparison text
+            const comparisonText = document.getElementById('comparison-text');
+            if (totalEmissions < 3.5) {
+                comparisonText.textContent = 'significantly below';
+            } else if (totalEmissions < 4.2) {
+                comparisonText.textContent = 'below';
+            } else if (totalEmissions < 4.8) {
+                comparisonText.textContent = 'slightly below';
+            } else if (totalEmissions < 5.5) {
+                comparisonText.textContent = 'slightly above';
+            } else {
+                comparisonText.textContent = 'above';
+            }
+            
+            // Show results
+            document.getElementById('results-container').style.display = 'block';
+            
+            // Scroll to results
+            document.getElementById('results-container').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Render charts on dashboard
+        function renderCharts() {
+            // Footprint chart
+            const footprintCtx = document.getElementById('footprintChart').getContext('2d');
+            new Chart(footprintCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Your Carbon Footprint',
+                        data: [320, 302, 280, 260, 250, 240],
+                        borderColor: '#2ecc71',
+                        backgroundColor: 'rgba(46, 204, 113, 0.1)',
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            title: {
+                                display: true,
+                                text: 'kg CO2'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Category chart
+            const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+            new Chart(categoryCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Transportation', 'Home Energy', 'Food', 'Goods & Services'],
+                    datasets: [{
+                        data: [40, 25, 20, 15],
+                        backgroundColor: [
+                            '#2ecc71',
+                            '#3498db',
+                            '#f39c12',
+                            '#e74c3c'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show home section by default
+            showSection('home');
+        });
+        const API_BASE = '/api';
+
+// Authentication functions
+async function registerUser(userData) {
+    try {
+        const response = await fetch(`${API_BASE}/auth/register`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userData)
+        });
+        
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Registration failed');
+        }
+        
+        return await response.json();
+    } catch (error) {
+        console.error('Registration error:', error);
+        throw error;
+    }
+}
+
+async function loginUser(credentials) {
+    try {
+        const response = await fetch(`${API_BASE}/auth/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(credentials)
+        });
+        
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Login failed');
+        }
+        
+        return await response.json();
+    } catch (error) {
+        console.error('Login error:', error);
+        throw error;
+    }
+}
+
+// Eco Actions functions
+async function addEcoAction(actionData, token) {
+    try {
+        const response = await fetch(`${API_BASE}/actions`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(actionData)
+        });
+        
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to add action');
+        }
+        
+        return await response.json();
+    } catch (error) {
+        console.error('Add action error:', error);
+        throw error;
+    }
+}
+
+async function getEcoActions(token) {
+    try {
+        const response = await fetch(`${API_BASE}/actions`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to fetch actions');
+        }
+        
+        return await response.json();
+    } catch (error) {
+        console.error('Get actions error:', error);
+        throw error;
+    }
+}
+
+// User authentication state management
+let currentUser = null;
+
+function setAuthToken(token) {
+    localStorage.setItem('ecotrack_token', token);
+}
+
+function getAuthToken() {
+    return localStorage.getItem('ecotrack_token');
+}
+
+function removeAuthToken() {
+    localStorage.removeItem('ecotrack_token');
+}
+
+function isLoggedIn() {
+    return !!getAuthToken();
+}
+
+// Update your existing functions to use the API
+async function handleLogin() {
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+    
+    try {
+        const result = await loginUser({ email, password });
+        setAuthToken(result.token);
+        currentUser = result.user;
+        
+        // Update UI with user data
+        updateUIAfterLogin();
+        
+        showSection('dashboard');
+        renderCharts();
+    } catch (error) {
+        alert('Login failed: ' + error.message);
+    }
+}
+
+async function handleRegister() {
+    const name = document.getElementById('register-name').value;
+    const email = document.getElementById('register-email').value;
+    const password = document.getElementById('register-password').value;
+    const confirmPassword = document.getElementById('register-confirm').value;
+    
+    if (password !== confirmPassword) {
+        alert('Passwords do not match');
+        return;
+    }
+    
+    try {
+        const result = await registerUser({ 
+            username: name.split(' ')[0], 
+            email, 
+            password 
+        });
+        setAuthToken(result.token);
+        currentUser = result.user;
+        
+        // Update UI with user data
+        updateUIAfterLogin();
+        
+        showSection('dashboard');
+        renderCharts();
+    } catch (error) {
+        alert('Registration failed: ' + error.message);
+    }
+}
+
+function updateUIAfterLogin() {
+    // Update navigation to show user is logged in
+    const authButtons = document.querySelector('.auth-buttons');
+    authButtons.innerHTML = `
+        <span style="margin-right: 15px;">Hello, ${currentUser.username}</span>
+        <button class="btn btn-outline" onclick="logout()">Logout</button>
+    `;
+}
+
+function logout() {
+    removeAuthToken();
+    currentUser = null;
+    
+    // Reset navigation
+    const authButtons = document.querySelector('.auth-buttons');
+    authButtons.innerHTML = `
+        <button class="btn btn-outline" onclick="showSection('login')">Login</button>
+        <button class="btn btn-primary" onclick="showSection('register')">Register</button>
+    `;
+    
+    showSection('home');
+}
+
+// Check if user is logged in on page load
+document.addEventListener('DOMContentLoaded', function() {
+    if (isLoggedIn()) {
+        // Try to get user data using the token
+        // You might want to add a /api/auth/me endpoint to verify tokens
+        updateUIAfterLogin();
+    }
+    
+    showSection('home');
+});
+        </script>
+</body>
+</html>
